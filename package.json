@@ -1,0 +1,77 @@
+{
+  "name": "@huntapi/mcp",
+  "version": "0.1.0",
+  "description": "HuntAPI MCP server: Download video and audio from public media URLs, or extract their metadata, with one async REST API.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "huntapi-mcp": "./dist/stdio.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "llms-install.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { force: true, recursive: true })\"",
+    "format:check": "prettier --check .",
+    "mcpb:pack": "npm run build && node scripts/prepare-mcpb.mjs && mcpb pack mcpb",
+    "prepack": "npm run build",
+    "start": "node dist/stdio.js",
+    "start:http": "node dist/stdio.js --http",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "author": "HuntAPI",
+  "license": "MIT",
+  "mcpName": "com.huntapi/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huntapi/huntapi-mcp.git"
+  },
+  "homepage": "https://github.com/huntapi/huntapi-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/huntapi/huntapi-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-tools",
+    "huntapi",
+    "video-download-api",
+    "audio-download-api",
+    "media-metadata",
+    "async-api"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@huntapi/sdk": "^0.1.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@anthropic-ai/mcpb": "^2.1.2",
+    "@types/node": "^22.10.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

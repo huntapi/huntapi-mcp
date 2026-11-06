@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.huntapi/mcp",
+  "title": "HuntAPI",
+  "description": "Download video and audio from public media URLs, or extract their metadata, with one async REST API.",
+  "version": "0.1.0",
+  "websiteUrl": "https://www.huntapi.com",
+  "repository": {
+    "url": "https://github.com/huntapi/huntapi-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@huntapi/mcp",
+      "version": "0.1.0",
+      "environmentVariables": [
+        {
+          "name": "HUNTAPI_API_KEY",
+          "description": "HuntAPI API key.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ],
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.huntapi.com/",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "description": "HuntAPI API key.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

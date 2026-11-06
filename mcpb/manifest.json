@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/mcpb/main/schemas/mcpb-manifest-v0.4.schema.json",
+  "manifest_version": "0.4",
+  "name": "huntapi-mcp",
+  "display_name": "HuntAPI",
+  "version": "0.1.0",
+  "description": "HuntAPI media download API for Claude.",
+  "long_description": "Download video and audio from public media URLs, or extract their metadata, with one async REST API.",
+  "author": {
+    "name": "HuntAPI",
+    "email": "contact@huntapi.com",
+    "url": "https://www.huntapi.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huntapi/huntapi-mcp"
+  },
+  "homepage": "https://www.huntapi.com",
+  "documentation": "https://github.com/huntapi/huntapi-mcp#readme",
+  "support": "mailto:contact@huntapi.com",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/dist/stdio.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/dist/stdio.js"],
+      "env": {
+        "HUNTAPI_API_KEY": "${user_config.HUNTAPI_API_KEY}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "audio_download",
+      "description": "Download audio from a URL via HuntAPI and receive a job id."
+    },
+    {
+      "name": "jobs",
+      "description": "Poll status, progress (0–100), and result of an async HuntAPI job."
+    },
+    {
+      "name": "media_metadata",
+      "description": "Extract metadata from a media URL without downloading the file."
+    },
+    {
+      "name": "stats",
+      "description": "Infrastructure health for an engine or endpoint over the last hour. Not scoped to your account or tenant. Enabled per account: HTTP 403 means contact support to activate it."
+    },
+    {
+      "name": "usage",
+      "description": "Retrieve real-time usage statistics and credit balance for your Huntapi account."
+    },
+    {
+      "name": "video_download",
+      "description": "Video Download"
+    },
+    {
+      "name": "wait_for_job",
+      "description": "Wait for an async download job to finish."
+    }
+  ],
+  "tools_generated": false,
+  "keywords": [
+    "mcp",
+    "huntapi",
+    "video-download-api",
+    "audio-download-api",
+    "media-metadata",
+    "async-api"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20"
+    }
+  },
+  "user_config": {
+    "HUNTAPI_API_KEY": {
+      "type": "string",
+      "title": "HuntAPI API key",
+      "description": "Your API key from https://app.huntapi.com.",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}

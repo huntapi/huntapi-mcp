@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tgz
+*.mcpb
+mcpb/server/
+.env
+.env.*
+.DS_Store
